@@ -10,7 +10,8 @@ public class TestDemo {
 		}
 		}
 	public int randomNumberSquared() {
-		return getRandomInt() * getRandomInt();
+		int randomNum = getRandomInt();
+		return randomNum * randomNum;
 	}
 	
 

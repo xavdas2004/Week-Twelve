@@ -17,7 +17,7 @@ class TestDemoTest {
 	private TestDemo testDemo;
 
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() {
 		testDemo = new TestDemo();
 	}
 
@@ -26,10 +26,13 @@ class TestDemoTest {
 	void assertThatTwoPositiveNumbersAreAddedCorrectly(int a, int b, int expected, boolean expectException) {
 		if(!expectException) {
 			assertThat(testDemo.addPositive(a, b)).isEqualTo(expected);
+		}else{
 			assertThatThrownBy(() -> 
 		    testDemo.addPositive(a, b))
 		        .isInstanceOf(IllegalArgumentException.class);
-		}}
+			}
+			
+		}
 	public static Stream<Arguments> argumentsForAddPositive(){
 		
 	
@@ -37,15 +40,15 @@ class TestDemoTest {
 		return Stream.of(
 				Arguments.arguments(2, 4, 6, false),
 	            Arguments.arguments(10, 5, 15, false),
-	            Arguments.arguments(-3, 7, 4, false),
-	            Arguments.arguments(0, 10, 10, false),
-	            Arguments.arguments(2, -5, -3, false),
-	            Arguments.arguments(100, -100, 0, false),
+	            Arguments.arguments(-3, 7, 4, true),
+	            Arguments.arguments(0, 10, 10, true),
+	            Arguments.arguments(2, -5, -3, true),
+	            Arguments.arguments(100, -100, 0, true),
 	            Arguments.arguments(1, 1, 2, false),
-	            Arguments.arguments(-1, -1, -2, false),
-	            Arguments.arguments(5, 0, 5, false),
-	            Arguments.arguments(0, 0, 0, false),
-	            Arguments.arguments(1, 2, 3, true),
+	            Arguments.arguments(-1, -1, -2, true),
+	            Arguments.arguments(5, 0, 5, true),
+	            Arguments.arguments(0, 0, 0, true),
+	            Arguments.arguments(1, 2, 3, false),
 	            Arguments.arguments(-1, -2, -3, true)
 				);
 	}
